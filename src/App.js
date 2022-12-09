@@ -1,15 +1,13 @@
-// import Users from "./Components/Users";
+import Users from "./Components/Users";
 import UsersDetails from "./Components/UsersDetails";
+import DesignedNav from "./Components/DesignedNav";
 
 function App() {
   return (
     <div className="container">
-      <UsersDetails />
-      {/* <Users /> */}
-      {/* <div className="card">
-        <Users />
-
-      </div> */}
+      <DesignedNav />
+      <Users />
+      {/* <UsersDetails /> */}
     </div>
   );
 }

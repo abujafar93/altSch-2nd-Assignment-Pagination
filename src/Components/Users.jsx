@@ -45,7 +45,7 @@ const Users = () => {
   //   console.log(itemObj);
   // });
 
-  return <></>;
+  return <div className="users"></div>;
 };
 
 export default Users;
