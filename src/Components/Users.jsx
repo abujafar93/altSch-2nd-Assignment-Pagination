@@ -45,7 +45,7 @@ const Users = () => {
   //   console.log(itemObj);
   // });
 
-  return <div>get data first</div>;
+  return <></>;
 };
 
 export default Users;

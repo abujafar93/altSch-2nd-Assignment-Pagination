@@ -5,6 +5,7 @@ function App() {
   return (
     <div className="container">
       <UsersDetails />
+      {/* <Users /> */}
       {/* <div className="card">
         <Users />
 

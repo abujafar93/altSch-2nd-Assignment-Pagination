@@ -6,19 +6,20 @@ function UserDetailsNavBar() {
   const navlinkstyles = ({ isActive }) => {
     return {
       fontWeight: isActive ? "bold" : "normal",
-      color: isActive ? "yellow" : "blue",
+      color: isActive ? "#259ge9" : "#259fd8",
+      textDecoration: "none",
     };
   };
 
   return (
     <nav className="primary-nav">
-      <NavLink style={navlinkstyles} to="UsersDetails">
+      <NavLink style={navlinkstyles} to="/">
         Details
       </NavLink>
-      <NavLink style={navlinkstyles} to="/Location">
+      <NavLink style={navlinkstyles} to="/location">
         Location
       </NavLink>
-      <NavLink style={navlinkstyles} to="/MembershipInfo">
+      <NavLink style={navlinkstyles} to="/member">
         User
       </NavLink>
     </nav>
