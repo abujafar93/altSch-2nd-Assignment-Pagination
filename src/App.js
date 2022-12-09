@@ -1,9 +1,14 @@
-import Users from "./Components/Users";
+// import Users from "./Components/Users";
+import UsersDetails from "./Components/UsersDetails";
 
 function App() {
   return (
-    <div>
-      <Users />
+    <div className="container">
+      <UsersDetails />
+      {/* <div className="card">
+        <Users />
+
+      </div> */}
     </div>
   );
 }
