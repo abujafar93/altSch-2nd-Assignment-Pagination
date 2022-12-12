@@ -39,9 +39,10 @@
 }
 
 .users {
-  height: 80vh;
-  width: 70%;
+  height: 90vh;
+  width: 60%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
@@ -51,12 +52,19 @@
 }
 
 .userDetails {
-  height: 85vh;
+  height: 90vh;
   width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 30px;
+}
+
+@media screen and (maxwidth: 600px) {
+  .userDetails {
+    flex-direction: column;
+    gap: 0px;
+  }
 }
 
 .userDetailsLeft {
@@ -106,8 +114,6 @@
 .userDetailsRight {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center; */
   margin-left: 3px;
   width: 68%;
   height: 100%;
@@ -126,6 +132,17 @@
   justify-content: space-around;
   background-color: #d7e3e9;
   border-radius: 0px 20px 0px 0px;
+}
+
+.userDetailsRight .primary-nav .Link {
+  text-decoration: none;
+  color: #259fd8;
+}
+
+.userDetailsRight .primary-nav .Link:active {
+  font-weight: bold;
+  font-size: 20px;
+  color: #399abc;
 }
 
 .navDisplay {
@@ -148,4 +165,50 @@
 .navDisplay p {
   margin-bottom: 25px;
   font-size: 20px;
+}
+
+table {
+  padding: 10px 20px;
+  border: 2px solid #f0eded;
+  height: 70vh;
+  border-radius: 10px;
+  color: #259fd8;
+  background-color: rgb(247, 247, 253);
+  width: 90%;
+}
+
+table thead tr th {
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+tbody {
+  width: 100%;
+  padding: 10px;
+}
+
+td {
+  padding: 5px 10px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+tbody tr:hover {
+  color: #ffffff;
+  background-color: #259fd8;
+}
+
+.noMatch {
+  color: #ffffff;
+  font-size: 30px;
 }

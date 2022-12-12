@@ -1,27 +1,8 @@
 import React from "react";
 
 const UserDetailsLeft = () => {
-  return (
-    <div className="userDetailsLeft">
-      <div className="userImageBox">
-        <img
-          src="data:image/png;base64,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"
-          alt="profileImage"
-        />
-        <p>John Cena</p>
-        <p>Frontend Developer</p>
-      </div>
-      <div className="skills">
-        <h3>SKILLS</h3>
-        <p>Branding</p>
-        <p>Graphic Designing</p>
-        <p>UI/UX</p>
-        <p>Web Design</p>
-        <p>Packaging</p>
-        <p>Print & Editorial</p>
-      </div>
-    </div>
-  );
+  // console.log(props.state.selectedItem);
+  //console.log(firstName);
 };
 
 export default UserDetailsLeft;

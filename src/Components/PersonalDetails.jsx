@@ -1,11 +1,18 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 const PersonalDetails = () => {
+  const location = useLocation();
+  const { from } = location.state;
+
+  console.log(from);
+
   return (
     <div className="navDisplay">
       <h2>Personal Details</h2>
       <p>
-        Name: <span>Mr Abdulfatai Quadri</span>
+        Name:
+        <span></span>
       </p>
       <p>
         Date of Birth: <span>May 17 1993</span>
