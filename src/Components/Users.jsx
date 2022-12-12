@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import Pagination from "../Pagination/Paginate";
 
 const Users = (props) => {
-  // console.log(props);
   const navigate = useNavigate();
 
   const [data2, setdata2] = useState([]);

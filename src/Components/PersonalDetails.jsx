@@ -5,8 +5,6 @@ const PersonalDetails = () => {
   const location = useLocation();
   const { from } = location.state;
 
-  console.log(from);
-
   return (
     <div className="navDisplay">
       <h2>Personal Details</h2>

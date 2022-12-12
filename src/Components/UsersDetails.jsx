@@ -1,30 +1,14 @@
 import React from "react";
 import { Link, useLocation, Outlet, Route, Routes } from "react-router-dom";
+import ErrorBoundary from "./ErrorBoundary";
 import Location from "./Location";
 import MembershipInfo from "./MembershipInfo";
 import NoMatch from "./NoMatch";
 import PersonalDetails from "./PersonalDetails";
-// import Location from "./Location";
-// import MembershipInfo from "./MembershipInfo";
-// import PersonalDetails from "./PersonalDetails";
 
 const UsersDetails = (props) => {
-  //console.log(props);
-
-  // const linkstyles = ({ isActive }) => {
-  //   return {
-  //     fontWeight: isActive ? "bold" : "normal",
-  //     color: isActive ? "#259ge9" : "#259fd8",
-  //     fontSize: isActive ? "23px" : "inherit",
-  //     textDecoration: "none",
-  //   };
-  // };
-
-  // console.log(props);
-
   const { state } = useLocation();
   const { selectedItem } = state;
-  // console.log(selectedItem);
   return (
     <div className="userDetails">
       <div className="userDetailsLeft">
@@ -49,39 +33,42 @@ const UsersDetails = (props) => {
 
       <div className="userDetailsRight">
         <nav className="primary-nav">
-          <Link
-            className="Link"
-            // style={{ linkstyles }}
-            to="personal"
-            state={{ from: "userDetails" }}
-          >
-            Details
-          </Link>
-          <Link
-            className="Link"
-            // style={{ linkstyles }}
-            to="location"
-            state={{ from: "userDetails" }}
-          >
-            Location
-          </Link>
-          <Link
-            className="Link"
-            // style={{ linkstyles }}
-            to="member"
-            state={{ from: "userDetails" }}
-          >
-            User
-          </Link>
+          <ErrorBoundary>
+            <Link
+              className="Link"
+              to="personal"
+              state={{ from: "userDetails" }}
+            >
+              Details
+            </Link>
+          </ErrorBoundary>
+
+          <ErrorBoundary>
+            <Link
+              className="Link"
+              to="location"
+              state={{ from: "userDetails" }}
+            >
+              Location
+            </Link>
+          </ErrorBoundary>
+
+          <ErrorBoundary>
+            <Link className="Link" to="member" state={{ from: "userDetails" }}>
+              User
+            </Link>
+          </ErrorBoundary>
         </nav>
 
-        <Routes>
-          <Route index element={<PersonalDetails />} />
-          <Route exact path="personal" element={<PersonalDetails />} />
-          <Route path="location" element={<Location />} />
-          <Route path="member" element={<MembershipInfo />} />
-          <Route path="*" element={<NoMatch />} />
-        </Routes>
+        <ErrorBoundary>
+          <Routes>
+            <Route index element={<PersonalDetails />} />
+            <Route exact path="personal" element={<PersonalDetails />} />
+            <Route path="location" element={<Location />} />
+            <Route path="member" element={<MembershipInfo />} />
+            <Route path="*" element={<NoMatch />} />
+          </Routes>
+        </ErrorBoundary>
         <Outlet />
       </div>
     </div>
