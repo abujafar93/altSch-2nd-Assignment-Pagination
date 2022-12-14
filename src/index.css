@@ -60,6 +60,12 @@
   padding: 20px 0px;
 }
 
+.PaginationDetails {
+  width: 93%;
+  margin: 10px;
+  padding: 10px;
+}
+
 @media screen and (max-width: 600px) {
   .container {
     gap: 0px;
