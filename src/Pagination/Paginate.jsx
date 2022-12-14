@@ -21,7 +21,6 @@ const Paginate = ({ handlePageClick, pageCount }) => {
         previousLabel="Previous"
         previousClassName="previous-button"
         nextClassName="next-button"
-        pageRangeDisplayed={5}
         pageLinkClassName="selected-page"
       />
     </div>

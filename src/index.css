@@ -77,14 +77,10 @@
   }
 
   .PaginationDetails {
-    width: 60%;
+    width: 93%;
     margin: 5px;
     padding: 5px;
   }
-}
-
-.PaginationDetails {
-  width: 80%;
 }
 
 .userDetailsLeft {

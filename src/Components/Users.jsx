@@ -13,7 +13,7 @@ const Users = (props) => {
   }, []);
 
   const fetchData = async () => {
-    axios.get("https://randomuser.me/api/?results=100").then((response) => {
+    axios.get("https://randomuser.me/api/?results=500").then((response) => {
       setdata2(response.data.results);
     });
   };
@@ -49,16 +49,32 @@ const Users = (props) => {
     myObj.push(itemObj);
   });
 
-  const PerPage = 10;
-  const [currentPage, setCurrentPage] = useState(3);
-  const handlePageClick = ({ selected: selectedPage }) => {
-    setCurrentPage(currentPage);
+  const [pageNum, setPageNum] = useState(0);
+
+  const usersPerPage = 10;
+  const pageVisited = pageNum * usersPerPage;
+  const handlePageClick = ({ selected }) => {
+    setPageNum(selected);
   };
 
-  const offset = currentPage * PerPage;
-  const currentPageData = myObj.slice(offset, offset + PerPage);
+  const displayUsers = myObj
+    .slice(pageVisited, pageVisited + usersPerPage)
+    .map((item) => {
+      return (
+        <tr
+          key={item.index}
+          onClick={() => {
+            toUserDetails(item);
+          }}
+        >
+          <td>
+            {item.nameTitle} {item.firstName} {item.lastName}
+          </td>
+        </tr>
+      );
+    });
 
-  const pageCount = Math.ceil(myObj.length / PerPage);
+  const pageCount = Math.ceil(myObj.length / usersPerPage);
 
   const toUserDetails = (selectedItem) => {
     navigate("userDetails/", { state: { selectedItem } });
@@ -72,22 +88,7 @@ const Users = (props) => {
             <th>Name of Users</th>
           </tr>
         </thead>
-        <tbody>
-          {currentPageData.map((item) => {
-            return (
-              <tr
-                key={item.index}
-                onClick={() => {
-                  toUserDetails(item);
-                }}
-              >
-                <td>
-                  {item.nameTitle} {item.firstName} {item.lastName}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
+        <tbody>{displayUsers}</tbody>
       </table>
       <div className="PaginationDetails">
         <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />

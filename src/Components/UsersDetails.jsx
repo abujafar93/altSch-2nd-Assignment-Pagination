@@ -63,7 +63,11 @@ const UsersDetails = (props) => {
         <ErrorBoundary>
           <Routes>
             <Route index element={<PersonalDetails />} />
-            <Route exact path="personal" element={<PersonalDetails />} />
+            <Route
+              exact
+              path="personal/:{selectedItem}"
+              element={<PersonalDetails />}
+            />
             <Route path="location" element={<Location />} />
             <Route path="member" element={<MembershipInfo />} />
             <Route path="*" element={<NoMatch />} />
