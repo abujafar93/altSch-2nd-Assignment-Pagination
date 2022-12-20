@@ -3,9 +3,16 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-.container {
+body {
   height: 100vh;
+  background-color: #259fd8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#root {
+  width: 100%;
   background-color: #259fd8;
   display: flex;
   flex-direction: column;
@@ -230,7 +237,10 @@ tbody tr:hover {
   background-color: #259fd8;
 }
 
+.errorBoundary,
 .noMatch {
   color: #ffffff;
+  margin-top: 30px;
   font-size: 30px;
+  font-weight: bold;
 }

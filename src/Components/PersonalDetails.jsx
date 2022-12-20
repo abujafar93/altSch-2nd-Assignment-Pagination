@@ -1,41 +1,58 @@
 import React from "react";
-import { useLocation, useParams } from "react-router-dom";
+// import { useLocation, useParams, useOutletContext } from "react-router-dom";
+import MyGlobalState from "./globalState";
 
 const PersonalDetails = () => {
-  const selectedItem = useParams();
   // const { from } = location.state;
   // console.log(from);
+
+  const userSelect = new MyGlobalState("singleUser");
+
+  // const selectedItem = useParams();
+  const passedData = userSelect.item;
+
+  const {
+    nameTitle,
+    lastName,
+    firstName,
+    userBirthDate,
+    userAge,
+    userGender,
+    userEmail,
+    userName,
+    userPhone,
+    nat,
+  } = passedData;
+
+  const fullName = nameTitle + " " + lastName + " " + firstName;
+
   return (
     <div className="navDisplay">
       <h2>Personal Details</h2>
       <p>
         Name:
-        <span>
-          {selectedItem.nameTitle}
-          {selectedItem.lastName}
-          {selectedItem.firstName}
-        </span>
+        <span>{fullName}</span>
       </p>
       <p>
-        Date of Birth: <span>{selectedItem.userBirthDate}May 17 1993</span>
+        Date of Birth: <span>{userBirthDate}</span>
       </p>
       <p>
-        Age: <span>{selectedItem.userAge}23</span> years
+        Age: <span>{userAge}</span> years
       </p>
       <p>
-        Gender: <span>{selectedItem.userGender}Male</span>
+        Gender: <span>{userGender}</span>
       </p>
       <p>
-        E-mail: <span>{selectedItem.userEmail}quadri1435@gmail.com</span>
+        E-mail: <span>{userEmail}</span>
       </p>
       <p>
-        Username: <span>{selectedItem.userName}abujafar93</span>
+        Username: <span>{userName}</span>
       </p>
       <p>
-        Phone Number: <span>{selectedItem.userPhone}+234888888888</span>
+        Phone Number: <span>{userPhone}</span>
       </p>
       <p>
-        NAT: <span>{selectedItem.userIdValue}DK</span>
+        NAT: <span>{nat}</span>
       </p>
     </div>
   );

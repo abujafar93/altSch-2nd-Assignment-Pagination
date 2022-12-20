@@ -1,33 +1,54 @@
 import React from "react";
+import MyGlobalState from "./globalState";
 
 const Location = () => {
+  const userSelect = new MyGlobalState("singleUser");
+
+  const passedData = userSelect.item;
+  console.log(passedData);
+
+  const {
+    userStreetNum,
+    userStreetName,
+    userCity,
+    userState,
+    userPostCode,
+    userCountry,
+    time,
+    lat,
+    long,
+    timeDescription,
+  } = passedData;
+
+  let street = userStreetNum + "," + userStreetName;
+
   return (
     <div className="navDisplay">
       <h2>User's Location</h2>
       <p>
-        Street: <span>N0 4, Ajegunle</span> Street
+        Street: <span>{street}</span> street
       </p>
       <p>
-        City: <span>Ibadan</span>
+        City: <span>{userCity}</span>
       </p>
       <p>
-        State: <span>Oyo</span> State
+        State: <span>{userState}</span> State
       </p>
       <p>
-        Country: <span>Nigeria</span>
+        Country: <span>{userCountry}</span>
       </p>
       <p>
-        Post Code: <span>76565656</span>
+        Post Code: <span>{userPostCode}</span>
       </p>
       <p>
-        Coordinates: <span>Long 77777</span>
-        <span>Lat 77777</span>
+        Coordinates: <span>Long {long}</span>
+        <span>Lat {lat}</span>
       </p>
       <p>
-        Time Zone: <span>+6:00</span>
+        Time Zone: <span>{time}</span>
       </p>
       <p>
-        Location Time Description: <span>Albay gagagg agagag</span>
+        Location Time Description: <span>{timeDescription}</span>
       </p>
     </div>
   );

@@ -1,33 +1,51 @@
 import React from "react";
+// import { useOutletContext } from "react-router-dom";
+import MyGlobalState from "./globalState";
 
 const MembershipInfo = () => {
+  const userSelect = new MyGlobalState("singleUser");
+
+  const passedData = userSelect.item;
+
+  const {
+    userIdname,
+    userIdValue,
+    registrationDate,
+    registrationDuration,
+    password,
+    cell,
+    salt,
+    nat,
+    uuid,
+  } = passedData;
+
   return (
     <div className="navDisplay">
       <h2>Membership Details</h2>
       <p>
-        id: <span>name</span>
-        <span>value</span>
+        id: <span>{userIdname}</span>
+        <span>{userIdValue}</span>
       </p>
       <p>
-        Registration Date: <span>May 17 1993</span>
+        Registration Date: <span>{registrationDate}</span>
       </p>
       <p>
-        Member for: <span>23</span> years
+        Member for: <span>{registrationDuration}</span> years
       </p>
       <p>
-        Password: <span>Male</span>
+        Password: <span>{password}</span>
       </p>
       <p>
-        Cell: <span>75756756756</span>
+        Cell: <span>{cell}</span>
       </p>
       <p>
-        salt: <span>abujafar93</span>
+        salt: <span>{salt}</span>
       </p>
       <p>
-        NAT: <span>Dk</span>
+        NAT: <span>{nat}</span>
       </p>
       <p>
-        uuid: <span>ABdulfatai Quadri</span>
+        uuid: <span>{uuid}</span>
       </p>
     </div>
   );

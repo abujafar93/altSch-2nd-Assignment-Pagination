@@ -1,26 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLoaderData } from "react-router-dom";
 import Pagination from "../Pagination/Paginate";
+import DesignedNav from "./DesignedNav";
+import MyGlobalState from "./globalState";
+
+export async function loader() {
+  const contacts = axios
+    .get("https://randomuser.me/api/?results=500")
+    .then((response) => {
+      const persons = response.data.results;
+      return persons;
+    });
+
+  return contacts;
+}
 
 const Users = (props) => {
   const navigate = useNavigate();
 
-  const [data2, setdata2] = useState([]);
+  const dataFetch = useLoaderData();
+  // console.log(dataFetch);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // console.log(dataFetch);
 
-  const fetchData = async () => {
-    axios.get("https://randomuser.me/api/?results=500").then((response) => {
-      setdata2(response.data.results);
-    });
-  };
+  // const [data2, setdata2] = useState([]);
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
+  // const fetchData = async () => {
+  //   axios.get("https://randomuser.me/api/?results=500").then((response) => {
+  //     setdata2(response.data.results);
+  //   });
+  // };
 
   let myObj = [];
 
-  data2.forEach((item) => {
+  dataFetch.forEach((item) => {
     let itemObj = {
       firstName: item.name.first,
       lastName: item.name.last,
@@ -38,16 +56,26 @@ const Users = (props) => {
       userEmail: item.email,
       userGender: item.gender,
       time: item.location.timezone.offset,
+      timeDescripttion: item.location.timezone.description,
       userIdname: item.id.name,
       userIdValue: item.id.value,
       userPostCode: item.location.postcode,
       registrationDate: item.registered.date,
       registrationDuration: item.registered.age,
-      id: item.id.value,
+      password: item.login.password,
+      cell: item.cell,
+      uuid: item.login.uuid,
+      salt: item.login.salt,
+      nat: item.nat,
+      lat: item.location.coordinates.latitude,
+      long: item.location.coordinates.longitude,
     };
 
+    // console.log(itemObj.userStreet);
     myObj.push(itemObj);
   });
+
+  // console.log(myObjs);
 
   const [pageNum, setPageNum] = useState(0);
 
@@ -62,7 +90,7 @@ const Users = (props) => {
     .map((item) => {
       return (
         <tr
-          key={item.index}
+          key={item.cell}
           onClick={() => {
             toUserDetails(item);
           }}
@@ -77,7 +105,12 @@ const Users = (props) => {
   const pageCount = Math.ceil(myObj.length / usersPerPage);
 
   const toUserDetails = (selectedItem) => {
-    navigate("userDetails/", { state: { selectedItem } });
+    const myWebStore = new MyGlobalState("singleUser");
+    myWebStore.setItem = selectedItem;
+
+    navigate(`/userDetails/${selectedItem.userIdValue}/personal`, {
+      state: { selectedItem },
+    });
   };
 
   return (
