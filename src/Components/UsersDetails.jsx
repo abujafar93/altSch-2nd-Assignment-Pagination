@@ -1,40 +1,24 @@
 import React from "react";
-import {
-  Link,
-  useLocation,
-  Outlet,
-  // Route,
-  // Routes
-} from "react-router-dom";
+import { Link, useLocation, Outlet } from "react-router-dom";
+import MyGlobalState from "./globalState";
 import ErrorBoundary from "./ErrorBoundary";
-// import Location from "./Location";
-// import MembershipInfo from "./MembershipInfo";
-// import NoMatch from "./NoMatch";
-// import PersonalDetails from "./PersonalDetails";
 
 const UsersDetails = (props) => {
   const { state } = useLocation();
 
   const dominData = state.selectedItem;
 
-  const { selectedItem } = {
-    selectedItem: {
-      userImage: "https://picsum.photos/600/480",
-      nameTitle: "Mr",
-      lastName: "Femi",
-      firstName: "Wumi",
-    },
-  };
+  const StorageData = new MyGlobalState("singleUser");
+  const dataStore = StorageData.item;
+  const switchData = dominData ?? dataStore;
 
-  // const { userImage, nameTitle, lastName, firstName } = dominData;
   return (
     <div className="userDetails">
       <div className="userDetailsLeft">
         <div className="userImageBox">
-          <img src={selectedItem.userImage} alt="profileImage" />
+          <img src={switchData.userImage} alt="profileImage" />
           <p>
-            {selectedItem.nameTitle} {selectedItem.lastName}{" "}
-            {selectedItem.firstName}
+            {switchData.nameTitle} {switchData.lastName} {switchData.firstName}
           </p>
           <p>Web Developer</p>
         </div>
@@ -78,19 +62,6 @@ const UsersDetails = (props) => {
           </ErrorBoundary>
         </nav>
 
-        {/* <ErrorBoundary>
-          <Routes>
-            <Route index element={<PersonalDetails />} />
-            <Route
-              exact
-              path="personal/:{selectedItem}"
-              element={<PersonalDetails />}
-            />
-            <Route path="location" element={<Location />} />
-            <Route path="member" element={<MembershipInfo />} />
-            <Route path="*" element={<NoMatch />} />
-          </Routes>
-        </ErrorBoundary> */}
         <Outlet context={dominData} />
       </div>
     </div>
